@@ -13,5 +13,5 @@ export interface Seeker extends Document {
     readonly photo: string;
     readonly skills: string;
     readonly experience: string;
-    createdAt: Date 
+    readonly createdAt: Date 
 }
