@@ -1,9 +1,14 @@
 import { Module } from '@nestjs/common';
-import { SeekerService } from './seeker.service';
 import { SeekerController } from './seeker.controller';
+import { SeekerService } from './seeker.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { SeekerSchema } from './schema/seeker.schema';
 
 @Module({
-  providers: [SeekerService],
-  controllers: [SeekerController]
+  imports: [
+    MongooseModule.forFeature([{ name: 'Seeker', schema: SeekerSchema }])
+  ],
+  controllers: [SeekerController],
+  providers: [SeekerService]
 })
-export class SeekerModule {}
+export class SeekerModule { }
