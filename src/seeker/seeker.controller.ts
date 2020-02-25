@@ -8,29 +8,29 @@ export class SeekerController {
 
     @Post('/create')
     async addSeeker(@Res() res, @Body() createCustomerDTO: CreateSeekerDTO) {
-        const seeker = await this.seekerService.addCustomer(createCustomerDTO);
+        const seeker = await this.seekerService.addSeeker(createCustomerDTO);
         return res.status(HttpStatus.OK).json({
             message: "Un candidat a bien été enregistré",
             seeker
         })
     }
 
-    @Get('customers')
+    @Get('seekers')
     async getAllCustomer(@Res() res) {
         const seekers = await this.seekerService.getAllCustomer();
         return res.status(HttpStatus.OK).json(seekers);
     }
 
-    @Get('customer/:customerID')
+    @Get('seeker/:seekerID')
     async getCustomer(@Res() res, @Param('customerID') customerID) {
-        const seeker = await this.seekerService.getCustomer(customerID);
+        const seeker = await this.seekerService.getSeeker(customerID);
         if (!seeker) throw new NotFoundException("le Candidat n'existe pas");
         return res.status(HttpStatus.OK).json(seeker);
     }
 
     @Put('/update')
-    async updateCustomer(@Res() res, @Query('customerID') customerID, @Body() createCustomerDTO: CreateSeekerDTO) {
-        const seeker = await this.seekerService.updateCustomer(customerID, createCustomerDTO);
+    async updateSeeker(@Res() res, @Query('customerID') customerID, @Body() createSeekerDTO: CreateSeekerDTO) {
+        const seeker = await this.seekerService.updateSeeker(customerID, createSeekerDTO);
         if (!seeker) throw new NotFoundException(" le Candidat n'existe pas!");
         return res.status(HttpStatus.OK).json({
             message: 'Le candidat a bien été mis a jour! ',
@@ -39,8 +39,8 @@ export class SeekerController {
     }
 
     @Delete('/delete')
-    async deleteCustomer(@Res() res, @Query('customerID') customerID) {
-        const seeker = await this.seekerService.deleteCustomer(customerID);
+    async deleteSeeker(@Res() res, @Query('customerID') customerID) {
+        const seeker = await this.seekerService.deleteSeeker(customerID);
         if (!seeker) throw new NotFoundException('Customer does not exist');
         return res.status(HttpStatus.OK).json({
             message: 'Customer has been deleted',

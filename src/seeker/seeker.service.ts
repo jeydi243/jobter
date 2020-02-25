@@ -13,23 +13,23 @@ export class SeekerService {
         return Seekers;
     }
   
-    async getCustomer(customerID): Promise<Seeker> {
+    async getSeeker(customerID): Promise<Seeker> {
         const seeker = await this.seekerModel.findById(customerID).exec();
         return seeker;
     }
 
-    async addCustomer(createCustomerDTO: CreateSeekerDTO): Promise<Seeker> {
+    async addSeeker(createCustomerDTO: CreateSeekerDTO): Promise<Seeker> {
         const newSeeker = await this.seekerModel(createCustomerDTO);
         return newSeeker.save();
     }
     
-    async updateCustomer(customerID, createCustomerDTO: CreateSeekerDTO): Promise<Seeker> {
+    async updateSeeker(customerID, createCustomerDTO: CreateSeekerDTO): Promise<Seeker> {
         const updatedCustomer = await this.seekerModel
             .findByIdAndUpdate(customerID, createCustomerDTO, { new: true });
         return updatedCustomer;
     }
     
-    async deleteCustomer(customerID): Promise<any> {
+    async deleteSeeker(customerID): Promise<any> {
         const deletedCustomer = await this.seekerModel.findByIdAndRemove(customerID);
         return deletedCustomer;
     }
